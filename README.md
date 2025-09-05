@@ -30,73 +30,88 @@ This backend allows users to **register, log in, manage patients and doctors, an
 ## Setup Instructions
 
 1. **Clone the repository**
-```bash
+
+
+```sh
 git clone <your-repo-url>
 cd healthcare-backend
-Install dependencies
+```
 
-bash
-Copy code
+
+
+2. **Install dependencies**
+
+```sh
 npm install
-Setup PostgreSQL
+```
 
-Create a database (e.g., healthcare_db)
+3. **Setup PostgreSQL**
 
-Note your username, password, host, and port
+- Create a database (e.g., `healthcare_db`)
+- Note your username, password, host, and port
 
-Create .env file in project root:
+4. **Create `.env` file in project root:**
 
-ini
-Copy code
+```env
 DATABASE_URL="postgresql://<username>:<password>@localhost:5432/healthcare_db"
 JWT_SECRET="your_jwt_secret"
 PORT=5000
-Run Prisma migrations
+```
 
-bash
-Copy code
+5. **Run Prisma migrations**
+
+```sh
 npx prisma migrate dev --name init
 npx prisma generate
-Start the server
+```
 
-bash
-Copy code
+6. **Start the server**
+
+```sh
 npm run dev
+```
+
 Server will run on: http://localhost:5000
 
-API Endpoints
-Authentication
-Method	Endpoint	Description
-POST	/api/auth/register	Register a new user
-POST	/api/auth/login	Log in and get JWT token
 
-Patients
-Method	Endpoint	Description
-POST	/api/patients	Create a new patient
-GET	/api/patients	Get all patients (auth only)
-GET	/api/patients/:id	Get patient details
-PUT	/api/patients/:id	Update patient
-DELETE	/api/patients/:id	Delete patient
+## API Endpoints
 
-Doctors
-Method	Endpoint	Description
-POST	/api/doctors	Create a new doctor
-GET	/api/doctors	Get all doctors
-GET	/api/doctors/:id	Get doctor details
-PUT	/api/doctors/:id	Update doctor
-DELETE	/api/doctors/:id	Delete doctor
+### Authentication
+| Method | Endpoint             | Description             |
+|--------|----------------------|-------------------------|
+| POST   | /api/auth/register   | Register a new user     |
+| POST   | /api/auth/login      | Log in and get JWT token|
 
-Patient–Doctor Mappings
-Method	Endpoint	Description
-POST	/api/mappings	Assign doctor to a patient
-GET	/api/mappings	Get all patient–doctor mappings
-GET	/api/mappings/:id	Get all doctors for a patient
-PUT	/api/mappings/:id	Update doctor assigned to patient
-DELETE	/api/mappings/:id	Remove doctor from patient
+### Patients
+| Method | Endpoint             | Description                  |
+|--------|----------------------|------------------------------|
+| POST   | /api/patients        | Create a new patient         |
+| GET    | /api/patients        | Get all patients (auth only) |
+| GET    | /api/patients/:id    | Get patient details          |
+| PUT    | /api/patients/:id    | Update patient               |
+| DELETE | /api/patients/:id    | Delete patient               |
 
-Notes
-Include the JWT token in the Authorization header for all protected routes.
+### Doctors
+| Method | Endpoint             | Description           |
+|--------|----------------------|-----------------------|
+| POST   | /api/doctors         | Create a new doctor   |
+| GET    | /api/doctors         | Get all doctors       |
+| GET    | /api/doctors/:id     | Get doctor details    |
+| PUT    | /api/doctors/:id     | Update doctor         |
+| DELETE | /api/doctors/:id     | Delete doctor         |
 
-Sensitive data (DB credentials, JWT secret) should be stored in .env.
+### Patient–Doctor Mappings
+| Method | Endpoint             | Description                        |
+|--------|----------------------|------------------------------------|
+| POST   | /api/mappings        | Assign doctor to a patient         |
+| GET    | /api/mappings        | Get all patient–doctor mappings    |
+| GET    | /api/mappings/:id    | Get all doctors for a patient      |
+| PUT    | /api/mappings/:id    | Update doctor assigned to patient  |
+| DELETE | /api/mappings/:id    | Remove doctor from patient         |
 
-Use Postman or any API client to test endpoints.
+
+## Notes
+
+- Include the JWT token in the Authorization header for all protected routes.
+- Sensitive data (DB credentials, JWT secret) should be stored in `.env`.
+- Use Postman or any API client to test endpoints.
