@@ -27,10 +27,10 @@ model Patient {
 }
 
 model Doctor {
-  id       Int      @id @default(autoincrement())
-  name     String
-  spec     String
-  mappings Mapping[]
+  id        Int      @id @default(autoincrement())
+  name      String
+  specialty String
+  mappings  Mapping[]
 }
 
 model Mapping {
